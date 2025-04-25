@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { SparklesCore } from "../ui/sparkles";
 import BlurText from "../ui/BlurText/BlurText";
 
 export default function SparklesPreview({

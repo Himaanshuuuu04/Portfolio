@@ -1,6 +1,5 @@
-import Image from "next/image";
 import { House, SquareUserRound, SquareCode, Mail } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import SparklesPreview from "@/components/demo/sparklePreviewDemo";
 import Squares from "@/components/ui/Squares/Squares";
@@ -23,7 +22,7 @@ export default function Home() {
         <div className="flex flex-col gap-2 items-center justify-center mt-20 md:mt-50">
           <SparklesPreview>
             <p className="text-base text-wrap w-screen px-5 md:w-full sm:text-lg font-light text-center text-neutral-500 dark:text-white">
-              Hey, I'm a
+              Hey, I&apos;m a
               <strong className="text-green-400 font-bold">
                 {" "}
                 Full Stack Developer
@@ -33,18 +32,16 @@ export default function Home() {
             </p>
           </SparklesPreview>
           <div className="flex flex-col md:flex-row gap-2 items-center justify-center -mt-4">
-           
             <AnimatedButton>
               <a
                 href="https://drive.google.com/file/d/1q2r3s4t5u6v7w8x9y0z1a2b3c4d5e6f/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Let's Connect ✋
+                Let&apos;s Connect ✋
               </a>
-              
             </AnimatedButton>
-             <AnimatedButton>
+            <AnimatedButton>
               <a
                 href="https://drive.google.com/file/d/1q2r3s4t5u6v7w8x9y0z1a2b3c4d5e6f/view?usp=sharing"
                 target="_blank"
@@ -52,9 +49,8 @@ export default function Home() {
               >
                 Resume 📄
               </a>
-              
             </AnimatedButton>
-            </div>
+          </div>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>

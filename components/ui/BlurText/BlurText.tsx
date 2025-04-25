@@ -71,7 +71,7 @@ const BlurText: React.FC<BlurTextProps> = ({
           }
         }
       },
-      { threshold, rootMargin },
+      { threshold, rootMargin }
     );
 
     if (ref.current) {
@@ -87,7 +87,7 @@ const BlurText: React.FC<BlurTextProps> = ({
       from: animationFrom || defaultFrom,
       to: inView
         ? async (
-            next: (arg: Record<string, SpringValue<any>>) => Promise<void>,
+            next: (arg: Record<string, SpringValue<any>>) => Promise<void>
           ) => {
             for (const step of animationTo || defaultTo) {
               await next(step);
@@ -103,7 +103,7 @@ const BlurText: React.FC<BlurTextProps> = ({
         : animationFrom || defaultFrom,
       delay: i * delay,
       config: { easing: easing as any },
-    })),
+    }))
   );
 
   return (
@@ -121,5 +121,6 @@ const BlurText: React.FC<BlurTextProps> = ({
     </p>
   );
 };
+
 
 export default BlurText;
