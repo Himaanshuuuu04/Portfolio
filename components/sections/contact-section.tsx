@@ -9,6 +9,7 @@ import { sendEmail } from "@/app/actions/email"
 
 export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
   const [formState, setFormState] = useState({
+    name:"",
     email: "",
     message: "",
   })
@@ -31,9 +32,9 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
 
     try {
       // Add name field for compatibility with the sendEmail function
-      await sendEmail({ ...formState, name: "Website Visitor" })
+      await sendEmail({ ...formState })
       setIsSubmitted(true)
-      setFormState({ email: "", message: "" })
+      setFormState({ name:"",email: "", message: "" })
 
       // Reset success message after 5 seconds
       setTimeout(() => {
@@ -61,14 +62,14 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
           {/* Direct contact options */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
             <a
-              href="mailto:avinashsingh9946@gmail.com"
+              href="mailto:himan0411singh@gmail.com"
               className="flex items-center justify-center gap-3 py-4 px-6 bg-black border border-gray-800 rounded-xl hover:bg-gray-900 transition-colors"
             >
               <Mail className="h-5 w-5 text-pink-500" />
-              <span className="text-white">avinashsingh9946@gmail.com</span>
+              <span className="text-white">himan0411singh@gmail.com</span>
             </a>
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/9818377959"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 py-4 px-6 bg-black border border-gray-800 rounded-xl hover:bg-gray-900 transition-colors"
@@ -84,6 +85,18 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Contact form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+              <input
+                type="text"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                
+                required
+                className="w-full px-6 py-4 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+              />
+            </div>
             <div>
               <input
                 type="email"

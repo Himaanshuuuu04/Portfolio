@@ -19,9 +19,9 @@ export default function HomePage() {
   const contactRef = useRef<HTMLDivElement>(null)
 
   // Scroll to section function
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
     if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" })
+      ref.current.scrollIntoView({ behavior: "smooth" });
     }
   }
 

@@ -1,69 +1,75 @@
-"use server"
+"use server";
 
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
 interface EmailData {
-  name: string
-  email: string
-  message: string
+  name: string;
+  email: string;
+  message: string;
 }
 
 export async function sendEmail(data: EmailData) {
-  const { name, email, message } = data
-
-  // Create a test account if you don't have real credentials
-  // For production, use your actual email credentials
-  const testAccount = await nodemailer.createTestAccount()
-
-  // Create a transporter
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || "smtp.ethereal.email",
-    port: Number.parseInt(process.env.EMAIL_PORT || "587"),
-    secure: process.env.EMAIL_SECURE === "true",
-    auth: {
-      user: process.env.EMAIL_USER || testAccount.user,
-      pass: process.env.EMAIL_PASS || testAccount.pass,
-    },
-  })
-
-  // Email content
-  const mailOptions = {
-    from: `"Portfolio Contact" <${process.env.EMAIL_FROM || "contact@example.com"}>`,
-    to: process.env.EMAIL_TO || "your.email@example.com",
-    subject: `New Contact Form Submission from ${name}`,
-    text: `
-      Name: ${name}
-      Email: ${email}
-      
-      Message:
-      ${message}
-    `,
-    html: `
-      <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
-        <h2 style="color: #16a34a;">New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <div style="margin-top: 20px; padding: 15px; background-color: #f9fafb; border-left: 4px solid #16a34a;">
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, "<br>")}</p>
-        </div>
-      </div>
-    `,
-  }
+  const { name, email, message } = data;
 
   try {
-    // Send email
-    const info = await transporter.sendMail(mailOptions)
+    // In production, don't create a test account — directly use your real credentials
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST || "smtp.ethereal.email", // fallback for dev
+      port: parseInt(process.env.EMAIL_PORT || "587"),
+      secure: process.env.EMAIL_SECURE === "true" || false, // SSL true or false
+      auth: {
+        user: process.env.EMAIL_USER!,
+        pass: process.env.EMAIL_PASS!,
+      },
+    });
 
-    // For development: Log the URL to preview the email (when using Ethereal)
-    if (process.env.NODE_ENV !== "production" && info.messageId) {
-      console.log("Message sent: %s", info.messageId)
-      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
+    const mailOptions = {
+      from: `"Portfolio Contact" <${process.env.EMAIL_FROM}>`,
+      to: process.env.EMAIL_TO!,
+      subject: `New Contact Form Submission from ${name}`,
+      text: `
+        Name: ${name}
+        Email: ${email}
+        
+        Message:
+        ${message}
+      `,
+      html: `
+        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f5; padding: 30px;">
+          <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);">
+            
+            <div style="background-color: #16a34a; padding: 20px; text-align: center;">
+              <h1 style="color: white; margin: 0; font-size: 28px;">New Contact Request ✉️</h1>
+            </div>
+    
+            <div style="padding: 30px;">
+              <p style="font-size: 18px; color: #111827;"><strong>Name:</strong> ${name}</p>
+              <p style="font-size: 18px; color: #111827;"><strong>Email:</strong> ${email}</p>
+    
+              <div style="margin-top: 25px; padding: 20px; background-color: #f9fafb; border-left: 5px solid #16a34a; border-radius: 8px;">
+                <p style="margin: 0; font-size: 16px; color: #374151;"><strong>Message:</strong></p>
+                <p style="margin-top: 10px; font-size: 16px; color: #374151; line-height: 1.6;">
+                  ${message.replace(/\n/g, "<br>")}
+                </p>
+              </div>
+    
+              <p style="margin-top: 30px; font-size: 14px; color: #9ca3af; text-align: center;">This message was sent from your portfolio contact form.</p>
+            </div>
+    
+          </div>
+        </div>
+      `,
+    };
+    
+    const info = await transporter.sendMail(mailOptions);
+
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     }
 
-    return { success: true }
+    return { success: true };
   } catch (error) {
-    console.error("Error sending email:", error)
-    throw new Error("Failed to send email")
+    console.error("Error sending email:", error);
+    throw new Error("Failed to send email");
   }
 }
