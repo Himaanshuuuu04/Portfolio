@@ -1,10 +1,10 @@
 "use client"
 
 import type React from "react"
+
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Send } from "lucide-react"
-import { sendEmail } from "@/app/actions/email"
 
 export function ContactForm() {
   const [formState, setFormState] = useState({
@@ -15,7 +15,6 @@ export function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
@@ -27,23 +26,18 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setError(null)
 
-    try {
-      await sendEmail(formState)
-      setIsSubmitted(true)
-      setFormState({ name: "", email: "", message: "" })
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, 5000)
-    } catch (err) {
-      console.error("Error sending email:", err)
-      setError("Failed to send message. Please try again later.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    setIsSubmitting(false)
+    setIsSubmitted(true)
+    setFormState({ name: "", email: "", message: "" })
+
+    // Reset success message after 5 seconds
+    setTimeout(() => {
+      setIsSubmitted(false)
+    }, 5000)
   }
 
   return (
@@ -60,7 +54,7 @@ export function ContactForm() {
             required
             value={formState.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-800/50 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
             placeholder="Your name"
           />
         </div>
@@ -76,7 +70,7 @@ export function ContactForm() {
             required
             value={formState.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-800/50 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
             placeholder="your.email@example.com"
           />
         </div>
@@ -93,12 +87,10 @@ export function ContactForm() {
           value={formState.message}
           onChange={handleChange}
           rows={5}
-          className="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-800/50 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+          className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
           placeholder="Your message..."
         />
       </div>
-
-      {error && <div className="text-red-500 text-sm">{error}</div>}
 
       <div className="flex justify-end">
         <motion.button
