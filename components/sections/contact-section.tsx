@@ -53,17 +53,17 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-gray-400 uppercase tracking-wider mb-2">GET IN TOUCH</p>
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 to-red-500 bg-clip-text text-transparent mb-8">
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
             Contact Me
           </h2>
         </div>
 
-        <div className="bg-black border border-gray-800/50 rounded-2xl p-8 md:p-12">
+        <div className="bg-black border border-white/20 rounded-2xl p-8 md:p-12">
           {/* Direct contact options */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
             <a
               href="mailto:himan0411singh@gmail.com"
-              className="flex items-center justify-center gap-3 py-4 px-6 bg-black border border-gray-800 rounded-xl hover:bg-gray-900 transition-colors"
+              className="flex items-center justify-center gap-3 py-4 px-6 bg-black border border-white/20 rounded-xl hover:bg-gray-900 transition-colors"
             >
               <Mail className="h-5 w-5 text-pink-500" />
               <span className="text-white">himan0411singh@gmail.com</span>
@@ -72,7 +72,7 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
               href="https://wa.me/9818377959"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 py-4 px-6 bg-black border border-gray-800 rounded-xl hover:bg-gray-900 transition-colors"
+              className="flex items-center justify-center gap-3 py-4 px-6 bg-black border border-white/20 rounded-xl hover:bg-gray-900 transition-colors"
             >
               <Phone className="h-5 w-5 text-pink-500" />
               <span className="text-white">WhatsApp</span>
@@ -94,7 +94,7 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
                 placeholder="Your Name"
                 
                 required
-                className="w-full px-6 py-4 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+                className="w-full px-6 py-4 bg-black border border-white/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
               />
             </div>
             <div>
@@ -105,7 +105,7 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
                 onChange={handleChange}
                 placeholder="Your Email"
                 required
-                className="w-full px-6 py-4 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+                className="w-full px-6 py-4 bg-black border border-white/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
               />
             </div>
 
@@ -117,7 +117,7 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
                 placeholder="Your Message"
                 required
                 rows={6}
-                className="w-full px-6 py-4 bg-black border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+                className="w-full px-6 py-4 bg-black border border-white/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
               />
             </div>
 

@@ -10,47 +10,48 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
   // Project data
-  const projects = [
-    {
-      title: "CodeInsight AI",
-      description: "AI-powered code analysis platform with debugging insights.",
+  const projects = [{
+      title: "Converse",
+      description: "Real-time chat application with modern messaging features.",
       features: [
-        "Code review system using Gemini API for technical insights.",
-        "Error analysis tool with Stack Overflow integration.",
-        "Blog module using Dev.to API with 20+ popular articles.",
+        "Socket.io for instant messaging",
+        "JWT auth + audio messaging support",
+        "ShadCN UI components"
       ],
-      techStack: ["React.js", "Tailwind CSS", "Node.js", "Express.js"],
-      github: "https://github.com/username/codeinsight-ai",
-      liveSite: "https://codeinsight-ai.vercel.app",
-      image: "/placeholder.svg?height=600&width=800",
+      techStack: ["React", "Socket.io", "MongoDB", "ShadCN"],
+      github: "https://github.com/Himaanshuuuu04/Converse",
+      liveSite: "https://converse-1chc.onrender.com/",
+      image: "https://github.com/Himaanshuuuu04/Converse/blob/deployment/Client/public/Screenshot%202025-04-27%20170147.png?raw=true"
     },
     {
-      title: "DevNet",
-      description: "Social network platform for developers to connect and share projects.",
+      title: "Flixie",
+      description: "AI-powered movie recommendation platform with streaming interface.",
       features: [
-        "Real-time messaging with Socket.io.",
-        "Project showcase with GitHub integration.",
-        "Job board with filtering and application tracking.",
+        "Open AI + TMDB API integration (500K+ movies)",
+        "Google OAuth auth & Appwrite backend",
+        "98% responsive UI with Tailwind/Framer Motion"
       ],
-      techStack: ["Next.js", "MongoDB", "Express.js", "Socket.io"],
-      github: "https://github.com/username/devnet",
-      liveSite: "https://devnet-app.vercel.app",
-      image: "/placeholder.svg?height=600&width=800",
+      techStack: ["React", "OpenAI", "Appwrite", "Tailwind CSS"],
+      github: "https://github.com/Himaanshuuuu04/Flixie.io",
+      liveSite: "#",
+      image: "https://github.com/Himaanshuuuu04/Flixie.io/blob/main/Client/public/Screenshot%202025-04-27%20170454.png?raw=true"
     },
+    
     {
-      title: "HealthTrack",
-      description: "Comprehensive health monitoring and wellness application.",
+      title: "Pollify",
+      description: "Anonymous polling platform with real-time results.",
       features: [
-        "Personalized workout plans with progress tracking.",
-        "Nutrition analysis and meal planning.",
-        "Integration with wearable devices for real-time data.",
+        "Create polls with 10+ options",
+        "90% faster responses via Appwrite",
+        "Vercel deployment (99.9% uptime)"
       ],
-      techStack: ["React Native", "Firebase", "Node.js", "TensorFlow"],
-      github: "https://github.com/username/healthtrack",
-      liveSite: "https://healthtrack-app.vercel.app",
-      image: "/placeholder.svg?height=600&width=800",
+      techStack: ["React", "Appwrite", "Vercel"],
+      github: "https://github.com/Himaanshuuuu04/Pollify",
+      liveSite: "https://pollify-five.vercel.app/",
+      image: "https://github.com/Himaanshuuuu04/Pollify/raw/main/src/assets/Frame%2015.png"
     },
-  ]
+  
+  ];
 
   const handleCardClick = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index)
@@ -61,8 +62,8 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-gray-400 uppercase tracking-wider mb-2">EXPLORE MY CREATIONS</p>
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 to-red-500 bg-clip-text text-transparent">
-            Projects
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
+              Projects
           </h2>
         </div>
 
@@ -86,9 +87,9 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
               >
                 <motion.div
                   className={`
-                    bg-black border border-gray-800 rounded-2xl overflow-hidden cursor-pointer
+                    bg-black border border-white/30 rounded-2xl overflow-hidden cursor-pointer
                     transition-all duration-500 transform
-                    ${hoveredIndex === index ? "scale-[1.02] shadow-2xl shadow-pink-500/20" : "scale-100"}
+                    ${hoveredIndex === index ? "scale-[1.02] shadow-2xl shadow-pink-500/40" : "scale-100"}
                   `}
                   style={{
                     transformStyle: "preserve-3d",
@@ -171,7 +172,7 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
                           }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <Github className="h-4 w-4" />
+                          <i className="pi pi-github" style={{ fontSize: "1rem" }}></i>
                           <span>GitHub</span>
                         </motion.a>
                         <motion.a
@@ -208,11 +209,11 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
                         transition={{ duration: 0.5 }}
                         className="h-full w-full"
                       >
-                        <Image
+                        <img
                           src={project.image || "/placeholder.svg"}
                           alt={project.title}
-                          fill
-                          className="object-cover transition-transform duration-700"
+                          // fill
+                          className="object-cover h-full transition-transform duration-700"
                         />
                       </motion.div>
                     </div>

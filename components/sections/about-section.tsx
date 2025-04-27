@@ -1,174 +1,425 @@
-"use client"
-import { forwardRef } from "react"
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { MapPin } from "lucide-react"
+"use client";
+import React, { forwardRef, useMemo } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { MapPin } from "lucide-react";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaGithub,
+} from "react-icons/fa";
+import {
+  SiTypescript,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiExpress,
+  SiMongodb,
+  SiRedux,
+  SiVercel,
+  SiPostman,
+  SiCplusplus,
+  SiFigma,
+  SiFramer,
+  SiSocketdotio,
+  SiPostgresql,
+  SiAppwrite,
+  SiPhp,
+  SiPython 
+} from "react-icons/si";
+
+// Type definitions
+type EducationItem = {
+  institution: string;
+  degree: string;
+  period: string;
+  grade: string;
+};
+
+type ExperienceItem = {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  achievements: string[];
+};
+
+type TechCategory = "frontend" | "backend" | "tools" | "languages" | "design";
+type TechItem = {
+  name: string;
+  icon: React.ReactNode;
+  category: TechCategory;
+  iconKey: string;
+};
 
 export const AboutSection = forwardRef<HTMLElement>((_, ref) => {
   // Education data
-  const education = [
+  const education: EducationItem[] = [
     {
-      institution: "Banaras Hindu University",
-      degree: "Master of Computer Applications",
-      period: "2022 - 2024",
-      grade: "CGPA: 8.1",
+      institution: "Jaypee Institute of Information Technology",
+      degree: "Bachelor of Technology in Computer Science",
+      period: "2023 - 2027",
+      grade: "CGPA: 7",
     },
-  ]
+  ];
 
   // Experience data
-  const experience = [
+  const experience: ExperienceItem[] = [
     {
-      company: "Clinical AI Assistance",
-      role: "Front-End Developer Intern",
-      period: "Apr 2024 - Oct 2024",
-      location: "Remote",
+      company: "Google Developer Groups",
+      role: "Frontend Developer",
+      period: "Aug 2024 – Present",
+      location: "JIIT, Noida",
       achievements: [
-        "Improved website performance, increasing mobile traffic by 10%",
-        "Developed a mental health tracking platform, adopted by 700+ students",
-        "Fixed UI bugs, reducing complaints by 50%",
+        "Implemented and updated UI modifications on the GDG website for better navigation",
+        "Hosted workshops on various technologies, reducing skill gaps among juniors",
       ],
     },
-  ]
+    {
+      company: "Cinekala - Film Society of JIIT",
+      role: "Cinematography and Design Lead",
+      period: "Sep 2023 – Present",
+      location: "JIIT, Noida",
+      achievements: [
+        "Documented events like Converge'24, producing high-quality promotional content",
+        "Conducted workshops on cinematography and filmmaking, enhancing skills of participants",
+      ],
+    },
+  ];
+
+  // Icon border color mapping
+  const ICON_BORDER_COLORS: Record<string, string> = {
+    html5: "border-orange-600 hover:bg-orange-600/10",
+    css3: "border-blue-500 hover:bg-blue-500/10",
+    javascript: "border-yellow-400 hover:bg-yellow-400/10",
+    typescript: "border-blue-600 hover:bg-blue-600/10",
+    react: "border-cyan-400 hover:bg-cyan-400/10",
+    nextjs: "border-black dark:border-white hover:bg-gray-800/10",
+    tailwindcss: "border-cyan-500 hover:bg-cyan-500/10",
+    framer: "border-purple-600 hover:bg-purple-600/10",
+    nodejs: "border-green-600 hover:bg-green-600/10",
+    express: "border-gray-800 dark:border-gray-300 hover:bg-gray-700/10",
+    mongodb: "border-green-500 hover:bg-green-500/10",
+    redux: "border-purple-700 hover:bg-purple-700/10",
+    git: "border-red-500 hover:bg-red-500/10",
+    github: "border-gray-800 dark:border-gray-300 hover:bg-gray-800/10",
+    vercel: "border-black dark:border-white hover:bg-gray-900/10",
+    postman: "border-orange-500 hover:bg-orange-500/10",
+    cplusplus: "border-blue-700 hover:bg-blue-700/10",
+    figma: "border-pink-600 hover:bg-pink-600/10",
+    socket: "border-white hover:bg-blue-500/10",
+  };
 
   // Tech stack data
-  const techStack = [
-    { name: "HTML", icon: "html5", category: "frontend" },
-    { name: "CSS", icon: "css3", category: "frontend" },
-    { name: "JavaScript", icon: "javascript", category: "frontend" },
-    { name: "TypeScript", icon: "typescript", category: "frontend" },
-    { name: "React.JS", icon: "react", category: "frontend" },
-    { name: "Next.JS", icon: "nextjs", category: "frontend" },
-    { name: "Tailwind CSS", icon: "tailwindcss", category: "frontend" },
-    { name: "Framer Motion", icon: "framer", category: "frontend" },
-    { name: "Node.JS", icon: "nodejs", category: "backend" },
-    { name: "Express.JS", icon: "express", category: "backend" },
-    { name: "MongoDB", icon: "mongodb", category: "backend" },
-    { name: "Redux Toolkit", icon: "redux", category: "frontend" },
-    { name: "Git", icon: "git", category: "tools" },
-    { name: "GitHub", icon: "github", category: "tools" },
-    { name: "Vercel", icon: "vercel", category: "tools" },
-    { name: "Postman", icon: "postman", category: "tools" },
-    { name: "C++", icon: "cplusplus", category: "languages" },
-    { name: "Figma", icon: "figma", category: "design" },
-  ]
+  const techStack: TechItem[] = useMemo(
+    () => [
+      {
+        name: "HTML",
+        icon: <FaHtml5 />,
+        category: "frontend",
+        iconKey: "html5",
+      },
+      {
+        name: "CSS",
+        icon: <FaCss3Alt />,
+        category: "frontend",
+        iconKey: "css3",
+      },
+      {
+        name: "JavaScript",
+        icon: <FaJs />,
+        category: "frontend",
+        iconKey: "javascript",
+      },
+      {
+        name: "TypeScript",
+        icon: <SiTypescript />,
+        category: "frontend",
+        iconKey: "typescript",
+      },
+      {
+        name: "React.JS",
+        icon: <FaReact />,
+        category: "frontend",
+        iconKey: "react",
+      },
+      {
+        name: "Next.JS",
+        icon: <SiNextdotjs />,
+        category: "frontend",
+        iconKey: "nextjs",
+      },
+     
+      {
+        name: "Tailwind CSS",
+        icon: <SiTailwindcss />,
+        category: "frontend",
+        iconKey: "tailwindcss",
+      },
+      {
+        name: "Framer Motion",
+        icon: <SiFramer />,
+        category: "frontend",
+        iconKey: "framer",
+      },
+      {
+        name: "Redux Toolkit",
+        icon: <SiRedux />,
+        category: "frontend",
+        iconKey: "redux",
+      },
+      {
+        name: "Node.JS",
+        icon: <FaNodeJs />,
+        category: "backend",
+        iconKey: "nodejs",
+      },
+      {
+        name: "Express.JS",
+        icon: <SiExpress />,
+        category: "backend",
+        iconKey: "express",
+      }, {
+        name: "Socket.IO",
+        icon: <SiSocketdotio />,
+        category: "backend",
+        iconKey: "socket",
+      },
+      {
+        name: "Appwrite",
+        icon: <SiAppwrite />,
+        category: "backend",
+        iconKey: "appwrite",
+      },
+      {
+        name: "MongoDB",
+        icon: <SiMongodb />,
+        category: "backend",
+        iconKey: "mongodb",
+      },
+     
+      {
+        name: "PostgreSQL",
+        icon: <SiPostgresql />,
+        category: "backend",
+        iconKey: "postgresql",
+      },
+      
+      { name: "Git", icon: <FaGitAlt />, category: "tools", iconKey: "git" },
+      {
+        name: "GitHub",
+        icon: <FaGithub />,
+        category: "tools",
+        iconKey: "github",
+      },
+      {
+        name: "Vercel",
+        icon: <SiVercel />,
+        category: "tools",
+        iconKey: "vercel",
+      },
+      {
+        name: "Postman",
+        icon: <SiPostman />,
+        category: "tools",
+        iconKey: "postman",
+      },
+      {
+        name:"PHP",
+        icon: <SiPhp />,
+        category: "languages",
+        iconKey: "php",
+      },
+      {
+        name: "C++",
+        icon: <SiCplusplus />,
+        category: "languages",
+        iconKey: "cplusplus",
+      },
+      {
+        name:"Python",
+        icon: <SiPython />,
+        category: "languages",
+        iconKey: "python",
+      },
+      {
+        name: "Figma",
+        icon: <SiFigma />,
+        category: "design",
+        iconKey: "figma",
+      },
+    ],
+    []
+  );
 
-  // Function to get icon component based on name
-  const getIconClass = (icon: string) => {
-    switch (icon) {
-      case "html5":
-        return "bg-orange-600"
-      case "css3":
-        return "bg-blue-500"
-      case "javascript":
-        return "bg-yellow-400"
-      case "typescript":
-        return "bg-blue-600"
-      case "react":
-        return "bg-cyan-400"
-      case "nextjs":
-        return "bg-black border border-white"
-      case "tailwindcss":
-        return "bg-cyan-500"
-      case "framer":
-        return "bg-purple-600"
-      case "nodejs":
-        return "bg-green-600"
-      case "express":
-        return "bg-gray-800 border border-gray-600"
-      case "mongodb":
-        return "bg-green-500"
-      case "redux":
-        return "bg-purple-700"
-      case "git":
-        return "bg-red-500"
-      case "github":
-        return "bg-gray-800"
-      case "vercel":
-        return "bg-black border border-white"
-      case "postman":
-        return "bg-orange-500"
-      case "cplusplus":
-        return "bg-blue-700"
-      case "figma":
-        return "bg-pink-600"
-      default:
-        return "bg-gray-700"
-    }
-  }
+  const ICON_COLORS: Record<string, string> = {
+    html5: "text-orange-600",
+    css3: "text-blue-500",
+    javascript: "text-yellow-400",
+    typescript: "text-blue-600",
+    react: "text-cyan-400",
+    nextjs: "text-black dark:text-white",
+    tailwindcss: "text-cyan-500",
+    framer: "text-purple-600",
+    nodejs: "text-green-600",
+    express: "text-gray-800 dark:text-gray-300",
+    mongodb: "text-green-500",
+    redux: "text-purple-700",
+    git: "text-red-500",
+    github: "text-gray-800 dark:text-gray-300",
+    vercel: "text-black dark:text-white",
+    postman: "text-orange-500",
+    cplusplus: "text-blue-700",
+    figma: "text-pink-600",
+    socket: "text-white",
+    postgresql: "text-blue-700",
+    appwrite: "text-red-500",
+    php: "text-blue-700",
+    python: "text-green-500",
+  };
 
   return (
-    <section ref={ref} id="about" className="relative min-h-screen w-full py-20 px-4 md:px-10">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-gray-400 uppercase tracking-wider mb-2">GET TO KNOW ME</p>
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 to-red-500 bg-clip-text text-transparent">
+    <section
+      ref={ref}
+      id="about"
+      className="relative min-h-screen w-full py-20 px-4 md:px-10"
+    >
+      <motion.div
+        className="max-w-6xl mx-auto"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <p className="text-gray-400 uppercase tracking-wider mb-2">
+            GET TO KNOW ME
+          </p>
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
             About Me
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left column with image and bio */}
-          <div className="lg:col-span-4 flex flex-col items-center">
+          <motion.div
+            className="lg:col-span-4 flex flex-col items-center border-0 md:border-r border-white/50 pr-0 md:pr-8 mb-10 md:mb-0"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             <div className="relative w-64 h-64 md:w-72 md:h-72 mb-8">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 to-red-500 blur-xl opacity-20"></div>
               <div className="relative w-full h-full rounded-full border-2 border-gray-800 overflow-hidden">
-                <Image src="/placeholder.svg?height=400&width=400" alt="Profile" fill className="object-cover" />
+                <Image
+                  src="/ProfilePic.jpg"
+                  alt="Profile"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
 
             <div className="text-center max-w-md">
               <p className="text-gray-300 leading-relaxed mb-6">
-                I'm a passionate Full-Stack Developer who loves building dynamic, user-friendly applications. I thrive
-                on solving problems, creating seamless experiences, and continuously expanding my skills. Always eager
-                to learn and grow, I'm currently looking for new opportunities to contribute and innovate.
+                "As a Full-Stack Developer with a strong foundation in Computer
+                Science, I'm passionate about building user-friendly, dynamic
+                applications that make a real impact. I take pride in solving
+                problems, refining experiences, and always seeking ways to
+                improve. Eager to continuously learn and expand my skill set,
+                I'm excited to contribute to projects that push the boundaries
+                of what's possible, while growing both professionally and
+                personally."
               </p>
 
               <div className="flex items-center justify-center text-gray-400">
                 <MapPin className="h-5 w-5 mr-2" />
-                <span>Jalandhar, Punjab, India</span>
+                <span>Faridabad, Haryana, India</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right column with education, experience, and tech stack */}
-          <div className="lg:col-span-8 space-y-12">
+          <motion.div
+            className="lg:col-span-8 space-y-10"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             {/* Education */}
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Education</h3>
+            <div className="border-b border-white/50 pb-6">
+              <h3 className="text-2xl font-bold text-white mb-4">Education</h3>
               {education.map((item, index) => (
-                <div key={index} className="mb-4">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xl font-semibold text-white">{item.institution}</h4>
-                    <span className="text-gray-400">{item.period}</span>
+                <motion.div
+                  key={index}
+                  className="mb-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                >
+                  <div className="flex flex-col md:flex-row justify-between items-start">
+                    <h4 className="text-base md:text-xl font-semibold text-white">
+                      {item.institution}
+                    </h4>
+                    <span className="text-gray-400 text-xs md:text-base">
+                      {item.period}
+                    </span>
                   </div>
-                  <p className="text-gray-300">{item.degree}</p>
-                  <p className="text-gray-400">{item.grade}</p>
-                </div>
+                  <div className="flex flex-col md:flex-row justify-between items-start">
+                    <p className="text-gray-300 text-sm md:text-base">
+                      {item.degree}
+                    </p>
+                    <span className="text-gray-400 text-xs md:text-base">
+                      {item.grade}
+                    </span>
+                  </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Experience */}
-            <div>
+            <div className="border-b border-white/50 pb-6">
               <h3 className="text-2xl font-bold text-white mb-6">Experience</h3>
               {experience.map((item, index) => (
-                <div key={index} className="mb-8">
-                  <div className="flex justify-between items-start">
-                    <h4 className="text-xl font-semibold text-white">{item.company}</h4>
-                    <div className="text-right">
-                      <span className="text-gray-400">{item.period}</span>
-                      <p className="text-gray-400">{item.location}</p>
+                <motion.div
+                  key={index}
+                  className="mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                >
+                  <div className="flex flex-col md:flex-row justify-between items-start">
+                    <h4 className="text-lg md:text-xl font-semibold text-white">
+                      {item.company}
+                    </h4>
+                    <div className="text-left md:text-right mt-2 md:mt-0">
+                      <span className="text-gray-400 text-sm md:text-base">
+                        {item.period}
+                      </span>
                     </div>
                   </div>
-                  <p className="text-gray-300 mb-4">{item.role}</p>
+                  <p className="text-gray-300 text-sm md:text-base mb-3">
+                    {item.role}
+                  </p>
                   <ul className="space-y-2">
                     {item.achievements.map((achievement, i) => (
                       <li key={i} className="flex items-start">
-                        <span className="text-pink-500 mr-2">|</span>
-                        <span className="text-gray-300">{achievement}</span>
+                        <span className="text-pink-500 mr-2">•</span>
+                        <span className="text-gray-300 text-sm md:text-base">
+                          {achievement}
+                        </span>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -179,20 +430,28 @@ export const AboutSection = forwardRef<HTMLElement>((_, ref) => {
                 {techStack.map((tech, index) => (
                   <motion.div
                     key={index}
-                    className={`px-4 py-2 rounded-full ${getIconClass(tech.icon)} flex items-center gap-2`}
+                    className={`px-4 py-2 rounded-full border-white/20  flex items-center gap-2 bg-transparent border-2 cursor-pointer transition-colors duration-200`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.05 }}
                   >
-                    <span className="text-white">{tech.name}</span>
+                    <span className={`text-lg ${ICON_COLORS[tech.iconKey]}`}>
+                      {tech.icon}
+                    </span>
+                    <span className="text-white text-xs md:text-sm">
+                      {tech.name}
+                    </span>
                   </motion.div>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
-  )
-})
+  );
+});
 
-AboutSection.displayName = "AboutSection"
+AboutSection.displayName = "AboutSection";
