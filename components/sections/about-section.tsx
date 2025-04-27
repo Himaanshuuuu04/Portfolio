@@ -1,94 +1,194 @@
 "use client"
-
-import type React from "react"
-
 import { forwardRef } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-
-import { TextReveal } from "@/components/ui/text-reveal"
-import { SkillsGrid } from "@/components/ui/skills-grid"
+import { MapPin } from "lucide-react"
 
 export const AboutSection = forwardRef<HTMLElement>((_, ref) => {
+  // Education data
+  const education = [
+    {
+      institution: "Banaras Hindu University",
+      degree: "Master of Computer Applications",
+      period: "2022 - 2024",
+      grade: "CGPA: 8.1",
+    },
+  ]
+
+  // Experience data
+  const experience = [
+    {
+      company: "Clinical AI Assistance",
+      role: "Front-End Developer Intern",
+      period: "Apr 2024 - Oct 2024",
+      location: "Remote",
+      achievements: [
+        "Improved website performance, increasing mobile traffic by 10%",
+        "Developed a mental health tracking platform, adopted by 700+ students",
+        "Fixed UI bugs, reducing complaints by 50%",
+      ],
+    },
+  ]
+
+  // Tech stack data
+  const techStack = [
+    { name: "HTML", icon: "html5", category: "frontend" },
+    { name: "CSS", icon: "css3", category: "frontend" },
+    { name: "JavaScript", icon: "javascript", category: "frontend" },
+    { name: "TypeScript", icon: "typescript", category: "frontend" },
+    { name: "React.JS", icon: "react", category: "frontend" },
+    { name: "Next.JS", icon: "nextjs", category: "frontend" },
+    { name: "Tailwind CSS", icon: "tailwindcss", category: "frontend" },
+    { name: "Framer Motion", icon: "framer", category: "frontend" },
+    { name: "Node.JS", icon: "nodejs", category: "backend" },
+    { name: "Express.JS", icon: "express", category: "backend" },
+    { name: "MongoDB", icon: "mongodb", category: "backend" },
+    { name: "Redux Toolkit", icon: "redux", category: "frontend" },
+    { name: "Git", icon: "git", category: "tools" },
+    { name: "GitHub", icon: "github", category: "tools" },
+    { name: "Vercel", icon: "vercel", category: "tools" },
+    { name: "Postman", icon: "postman", category: "tools" },
+    { name: "C++", icon: "cplusplus", category: "languages" },
+    { name: "Figma", icon: "figma", category: "design" },
+  ]
+
+  // Function to get icon component based on name
+  const getIconClass = (icon: string) => {
+    switch (icon) {
+      case "html5":
+        return "bg-orange-600"
+      case "css3":
+        return "bg-blue-500"
+      case "javascript":
+        return "bg-yellow-400"
+      case "typescript":
+        return "bg-blue-600"
+      case "react":
+        return "bg-cyan-400"
+      case "nextjs":
+        return "bg-black border border-white"
+      case "tailwindcss":
+        return "bg-cyan-500"
+      case "framer":
+        return "bg-purple-600"
+      case "nodejs":
+        return "bg-green-600"
+      case "express":
+        return "bg-gray-800 border border-gray-600"
+      case "mongodb":
+        return "bg-green-500"
+      case "redux":
+        return "bg-purple-700"
+      case "git":
+        return "bg-red-500"
+      case "github":
+        return "bg-gray-800"
+      case "vercel":
+        return "bg-black border border-white"
+      case "postman":
+        return "bg-orange-500"
+      case "cplusplus":
+        return "bg-blue-700"
+      case "figma":
+        return "bg-pink-600"
+      default:
+        return "bg-gray-700"
+    }
+  }
+
   return (
     <section ref={ref} id="about" className="relative min-h-screen w-full py-20 px-4 md:px-10">
       <div className="max-w-6xl mx-auto">
-        <TextReveal>
-          <h2 className="text-4xl md:text-5xl font-bold mb-10 text-center text-white">About Me</h2>
-        </TextReveal>
+        <div className="text-center mb-12">
+          <p className="text-gray-400 uppercase tracking-wider mb-2">GET TO KNOW ME</p>
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 to-red-500 bg-clip-text text-transparent">
+            About Me
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          {/* Image Column */}
-          <motion.div
-            className="lg:col-span-5 flex justify-center"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-green-600 blur-xl opacity-20 animate-pulse"></div>
-              <div className="relative w-full h-full rounded-full border-2 border-green-500/30 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left column with image and bio */}
+          <div className="lg:col-span-4 flex flex-col items-center">
+            <div className="relative w-64 h-64 md:w-72 md:h-72 mb-8">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 to-red-500 blur-xl opacity-20"></div>
+              <div className="relative w-full h-full rounded-full border-2 border-gray-800 overflow-hidden">
                 <Image src="/placeholder.svg?height=400&width=400" alt="Profile" fill className="object-cover" />
               </div>
             </div>
-          </motion.div>
 
-          {/* Content Column */}
-          <motion.div
-            className="lg:col-span-7"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-3xl font-bold text-green-400 mb-4">Full Stack Developer</h3>
-            <p className="text-lg text-gray-300 leading-relaxed mb-6">
-              I'm a passionate Full Stack Developer with expertise in modern web technologies. With a strong foundation
-              in both frontend and backend development, I create seamless, responsive, and user-friendly applications.
-            </p>
-            <p className="text-lg text-gray-300 leading-relaxed mb-8">
-              My journey in tech began with a curiosity about how things work on the web, which evolved into a career
-              building innovative solutions for real-world problems.
-            </p>
+            <div className="text-center max-w-md">
+              <p className="text-gray-300 leading-relaxed mb-6">
+                I'm a passionate Full-Stack Developer who loves building dynamic, user-friendly applications. I thrive
+                on solving problems, creating seamless experiences, and continuously expanding my skills. Always eager
+                to learn and grow, I'm currently looking for new opportunities to contribute and innovate.
+              </p>
 
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div>
-                <h4 className="text-xl font-semibold text-white mb-2">Name</h4>
-                <p className="text-gray-400">Himanshu Singh</p>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-white mb-2">Email</h4>
-                <p className="text-gray-400">contact@example.com</p>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-white mb-2">Location</h4>
-                <p className="text-gray-400">New Delhi, India</p>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-white mb-2">Availability</h4>
-                <p className="text-gray-400">Open to opportunities</p>
+              <div className="flex items-center justify-center text-gray-400">
+                <MapPin className="h-5 w-5 mr-2" />
+                <span>Jalandhar, Punjab, India</span>
               </div>
             </div>
+          </div>
 
-            <AnimatedButton>
-              <a
-                href="https://drive.google.com/file/d/1q2r3s4t5u6v7w8x9y0z1a2b3c4d5e6f/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download CV
-              </a>
-            </AnimatedButton>
-          </motion.div>
-        </div>
+          {/* Right column with education, experience, and tech stack */}
+          <div className="lg:col-span-8 space-y-12">
+            {/* Education */}
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">Education</h3>
+              {education.map((item, index) => (
+                <div key={index} className="mb-4">
+                  <div className="flex justify-between items-start">
+                    <h4 className="text-xl font-semibold text-white">{item.institution}</h4>
+                    <span className="text-gray-400">{item.period}</span>
+                  </div>
+                  <p className="text-gray-300">{item.degree}</p>
+                  <p className="text-gray-400">{item.grade}</p>
+                </div>
+              ))}
+            </div>
 
-        {/* Skills Section */}
-        <div className="mt-20">
-          <TextReveal>
-            <h3 className="text-3xl font-bold text-center text-white mb-12">My Skills</h3>
-          </TextReveal>
-          <SkillsGrid />
+            {/* Experience */}
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">Experience</h3>
+              {experience.map((item, index) => (
+                <div key={index} className="mb-8">
+                  <div className="flex justify-between items-start">
+                    <h4 className="text-xl font-semibold text-white">{item.company}</h4>
+                    <div className="text-right">
+                      <span className="text-gray-400">{item.period}</span>
+                      <p className="text-gray-400">{item.location}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 mb-4">{item.role}</p>
+                  <ul className="space-y-2">
+                    {item.achievements.map((achievement, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="text-pink-500 mr-2">|</span>
+                        <span className="text-gray-300">{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* Tech Stack */}
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">Tech Stack</h3>
+              <div className="flex flex-wrap gap-3">
+                {techStack.map((tech, index) => (
+                  <motion.div
+                    key={index}
+                    className={`px-4 py-2 rounded-full ${getIconClass(tech.icon)} flex items-center gap-2`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="text-white">{tech.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -96,21 +196,3 @@ export const AboutSection = forwardRef<HTMLElement>((_, ref) => {
 })
 
 AboutSection.displayName = "AboutSection"
-
-function AnimatedButton({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="bg-green-900 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-sm font-semibold leading-6 text-white inline-block"
-    >
-      <span className="absolute inset-0 overflow-hidden rounded-full">
-        <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-      </span>
-      <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-2 px-6 ring-1 ring-white/10">
-        <span>{children}</span>
-      </div>
-      <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
-    </motion.button>
-  )
-}
