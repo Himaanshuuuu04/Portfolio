@@ -23,7 +23,7 @@ const eslintConfig = [
       "react/jsx-key": "warn",
       "react/jsx-no-duplicate-props": "error",
       "react/jsx-no-undef": "error",
-      "react/jsx-unused-props": "warn",
+ 
     },
     
   }),

@@ -21,7 +21,7 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
       techStack: ["React", "Socket.io", "MongoDB", "ShadCN"],
       github: "https://github.com/Himaanshuuuu04/Converse",
       liveSite: "https://converse-1chc.onrender.com/",
-      image: "https://github.com/Himaanshuuuu04/Converse/blob/deployment/Client/public/Screenshot%202025-04-27%20170147.png?raw=true"
+      image: "https://raw.githubusercontent.com/Himaanshuuuu04/Converse/refs/heads/deployment/Client/public/Screenshot%202025-04-27%20170147.png"
     },
     {
       title: "Flixie",
@@ -34,7 +34,7 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
       techStack: ["React", "OpenAI", "Appwrite", "Tailwind CSS"],
       github: "https://github.com/Himaanshuuuu04/Flixie.io",
       liveSite: "#",
-      image: "https://github.com/Himaanshuuuu04/Flixie.io/blob/main/Client/public/Screenshot%202025-04-27%20170454.png?raw=true"
+      image: "https://raw.githubusercontent.com/Himaanshuuuu04/Flixie.io/refs/heads/main/Client/public/Screenshot%202025-04-27%20170454.png"
     },
     
     {
@@ -48,7 +48,7 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
       techStack: ["React", "Appwrite", "Vercel"],
       github: "https://github.com/Himaanshuuuu04/Pollify",
       liveSite: "https://pollify-five.vercel.app/",
-      image: "https://github.com/Himaanshuuuu04/Pollify/raw/main/src/assets/Frame%2015.png"
+      image: "https://raw.githubusercontent.com/Himaanshuuuu04/Pollify/main/src/assets/Frame%2015.png"
     },
   
   ];
@@ -209,10 +209,10 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
                         transition={{ duration: 0.5 }}
                         className="h-full w-full"
                       >
-                        <img
+                        <Image
                           src={project.image || "/placeholder.svg"}
                           alt={project.title}
-                          // fill
+                          fill
                           className="object-cover h-full transition-transform duration-700"
                         />
                       </motion.div>
