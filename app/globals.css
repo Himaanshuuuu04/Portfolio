@@ -2,7 +2,9 @@
 @import "tw-animate-css";
 
 @import 'primeicons/primeicons.css';
-        
+.font-outfit {
+  font-family: var(--font-outfit);
+}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
