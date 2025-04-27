@@ -61,15 +61,11 @@ export async function sendEmail(data: EmailData) {
       `,
     };
     
-    const info = await transporter.sendMail(mailOptions);
-
-    if (process.env.NODE_ENV !== "production") {
-      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    }
+    await transporter.sendMail(mailOptions);
 
     return { success: true };
   } catch (error) {
-    console.error("Error sending email:", error);
+    // console.error("Error sending email:", error);
     throw new Error("Failed to send email");
   }
 }

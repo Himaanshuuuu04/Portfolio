@@ -23,6 +23,14 @@ const eslintConfig = [
       "react/jsx-key": "warn",
       "react/jsx-no-duplicate-props": "error",
       "react/jsx-no-undef": "error",
+      "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { 
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ]
  
     },
     

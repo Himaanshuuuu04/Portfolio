@@ -90,29 +90,6 @@ export const AboutSection = forwardRef<HTMLElement>((_, ref) => {
     },
   ];
 
-  // Icon border color mapping
-  const ICON_BORDER_COLORS: Record<string, string> = {
-    html5: "border-orange-600 hover:bg-orange-600/10",
-    css3: "border-blue-500 hover:bg-blue-500/10",
-    javascript: "border-yellow-400 hover:bg-yellow-400/10",
-    typescript: "border-blue-600 hover:bg-blue-600/10",
-    react: "border-cyan-400 hover:bg-cyan-400/10",
-    nextjs: "border-black dark:border-white hover:bg-gray-800/10",
-    tailwindcss: "border-cyan-500 hover:bg-cyan-500/10",
-    framer: "border-purple-600 hover:bg-purple-600/10",
-    nodejs: "border-green-600 hover:bg-green-600/10",
-    express: "border-gray-800 dark:border-gray-300 hover:bg-gray-700/10",
-    mongodb: "border-green-500 hover:bg-green-500/10",
-    redux: "border-purple-700 hover:bg-purple-700/10",
-    git: "border-red-500 hover:bg-red-500/10",
-    github: "border-gray-800 dark:border-gray-300 hover:bg-gray-800/10",
-    vercel: "border-black dark:border-white hover:bg-gray-900/10",
-    postman: "border-orange-500 hover:bg-orange-500/10",
-    cplusplus: "border-blue-700 hover:bg-blue-700/10",
-    figma: "border-pink-600 hover:bg-pink-600/10",
-    socket: "border-white hover:bg-blue-500/10",
-  };
-
   // Tech stack data
   const techStack: TechItem[] = useMemo(
     () => [

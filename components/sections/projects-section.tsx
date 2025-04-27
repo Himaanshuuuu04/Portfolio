@@ -3,7 +3,7 @@
 import { forwardRef, useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Github, ExternalLink, ArrowRight } from "lucide-react"
+import { ExternalLink, ArrowRight } from "lucide-react"
 
 export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)

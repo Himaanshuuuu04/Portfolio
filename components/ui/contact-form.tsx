@@ -39,7 +39,6 @@ export function ContactForm() {
         setIsSubmitted(false)
       }, 5000)
     } catch (err) {
-      console.error("Error sending email:", err)
       setError("Failed to send message. Please try again later.")
     } finally {
       setIsSubmitting(false)

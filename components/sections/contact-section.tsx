@@ -41,8 +41,7 @@ export const ContactSection = forwardRef<HTMLElement>((_, ref) => {
         setIsSubmitted(false)
       }, 5000)
     } catch (err) {
-      console.error("Error sending email:", err)
-      setError("Failed to send message. Please try again later.")
+      setError("Failed to send message. Please try again later."+ err)
     } finally {
       setIsSubmitting(false)
     }

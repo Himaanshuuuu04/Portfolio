@@ -91,10 +91,6 @@ const BlurText: React.FC<BlurTextProps> = ({
             for (const step of animationTo || defaultTo) {
               await next(step)
             }
-            animatedCount.current += 1
-            if (animatedCount.current === elements.length && onAnimationComplete) {
-              onAnimationComplete()
-            }
           }
         : animationFrom || defaultFrom,
       delay: i * delay,
