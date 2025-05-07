@@ -106,7 +106,7 @@ export default function HomePage() {
               </AnimatedButton>
               <AnimatedButton color="pink">
                 <a
-                  href="https://drive.google.com/uc?export=download&id=1XLL_ZSAQfLundDUg-FojfX4UR22kuDC9"
+                  href="https://drive.google.com/uc?export=download&id=1LPcBl6aL5soDDejoTawzwC3urPzPV8Gw"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
