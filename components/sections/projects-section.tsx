@@ -20,7 +20,7 @@ export const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
       ],
       techStack: ["React", "Socket.io", "MongoDB", "ShadCN"],
       github: "https://github.com/Himaanshuuuu04/Converse",
-      liveSite: "https://converse-1chc.onrender.com/",
+      liveSite: "https://chatwithconverse.xyz/",
       image: "https://raw.githubusercontent.com/Himaanshuuuu04/Converse/refs/heads/deployment/Client/public/Screenshot%202025-04-27%20170147.png"
     },
     {
